@@ -26,7 +26,7 @@ function LinkInput() {
         />
         <button type="submit">Submit</button>
         <div>
-          <a href={`api/downloadVideo?url=${url}`} download="myvideo">
+          <a href={`api/downloadVideo?url=${url}`} download="myvideo.mp4">
             Link
           </a>
         </div>
