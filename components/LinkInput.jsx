@@ -12,12 +12,13 @@ function LinkInput() {
   async function handleSubmit(e) {
     e && e.preventDefault();
     if (!url) return alert("Url cannot be empty");
-    let res = await axios.get("api/urlInfo?url=" + url);
-    res.catch((err) => {
-      console.log(err);
+
+    let res = await axios.get("api/urlInfo?url=" + url).catch((err) => {
+      return alert("Invalid url");
     });
     console.log(res);
-    if (res.data && res.data.formats) {
+
+    if (res && res.data && res.data.formats) {
       let avFormats = [],
         aFormats = [],
         vFormats = [];

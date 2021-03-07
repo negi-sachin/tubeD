@@ -7,7 +7,7 @@ export default async function urlInfo(req, res) {
     let info = await ytdl.getBasicInfo(url);
     res.status(200).json(info);
   } catch (err) {
-    console.log(err);
-    res.status(404);
+    console.log("err", err);
+    res.status(404).json(err);
   }
 }
