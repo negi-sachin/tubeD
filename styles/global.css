@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer utilities {
+    *{
+        padding:0px;
+        margin:0px
+    }
+    body{
+        padding:10px
+    }
+  }

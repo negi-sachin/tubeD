@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { GoSearch } from "react-icons/go";
 
 let BACKEND_URL = "https://frozen-bastion-63799.herokuapp.com";
 
 function LinkInput() {
-  const [url, setUrl] = useState("https://youtu.be/0HYyB8VLJZ0");
+  const [url, setUrl] = useState();
   const [audioVideoFormats, setAudioVideoFormats] = useState();
   const [audioFormats, setAudioFormats] = useState();
   const [videoFormats, setVideoFormats] = useState();
   async function handleSubmit(e) {
     e && e.preventDefault();
+    if (!url) return alert("Url cannot be empty");
     let res = await axios.get("api/urlInfo?url=" + url);
-    console.log({ res });
+    res.catch((err) => {
+      console.log(err);
+    });
+    console.log(res);
     if (res.data && res.data.formats) {
       let avFormats = [],
         aFormats = [],
@@ -38,9 +43,9 @@ function LinkInput() {
     //     console.log("err", err);
     //   });
   }
-  console.log(process.env);
+
   return (
-    <div>
+    <div className="text-center">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -48,19 +53,23 @@ function LinkInput() {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">
+          <GoSearch />
+        </button>
       </form>
-      {audioVideoFormats &&
-        audioVideoFormats.map((i) => (
-          <div>
-            <a
-              href={`${BACKEND_URL}/download?url=${url}&itag=${i.itag}`}
-              download="myvideo.mp4"
-            >
-              {i.qualityLabel}
-            </a>
-          </div>
-        ))}
+      <div className="mt-4">
+        {audioVideoFormats &&
+          audioVideoFormats.map((i) => (
+            <div>
+              <a
+                href={`${BACKEND_URL}/download?url=${url}&itag=${i.itag}`}
+                download="myvideo.mp4"
+              >
+                Quality: {i.qualityLabel}
+              </a>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
