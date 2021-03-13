@@ -7,6 +7,7 @@ function Index() {
   return (
     <div>
       <Head>
+        <link rel="icon" href="logo.png" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
