@@ -46,13 +46,14 @@ function LinkInput() {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-52">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Enter Url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
+          className="border p-3 rounded-md w-3/4 md:w-1/2 mr-3 text-center focus:outline-none"
         />
         <button type="submit">
           <GoSearch />
@@ -61,7 +62,7 @@ function LinkInput() {
       <div className="mt-4">
         {audioVideoFormats &&
           audioVideoFormats.map((i) => (
-            <div>
+            <div className="mx-auto w-1/2 md:w-1/3 p-1.5 border border-yellow-200 my-3">
               <a
                 href={`${BACKEND_URL}/download?url=${url}&itag=${i.itag}`}
                 download="myvideo.mp4"
